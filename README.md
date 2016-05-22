@@ -1,4 +1,4 @@
-# babel-plugin-transform-dedupe-string-literals
+# babel-plugin-dedupe-string-literals
 
 Dedupe long strings in arrays as new variable declarations.
 
@@ -22,7 +22,7 @@ var _a = 'long string';
 ```sh
 # if babel isn't already installed, it creates a `babel` cli command
 $ npm install babel-cli
-$ npm install babel-plugin-transform-dedupe-string-literals
+$ npm install babel-plugin-dedupe-string-literals
 ```
 
 ## Options
@@ -42,13 +42,13 @@ $ npm install babel-plugin-transform-dedupe-string-literals
 ```js
 // without options
 {
-  "plugins": ["transform-dedupe-string-literals"]
+  "plugins": ["dedupe-string-literals"]
 }
 
 // with options
 {
   "plugins": [
-    ["transform-dedupe-string-literals", {
+    ["dedupe-string-literals", {
       "minimumStringLength": 20 // defaults to 7
     }]
   ]
@@ -60,7 +60,7 @@ $ npm install babel-plugin-transform-dedupe-string-literals
 > Check http://babeljs.io/docs/usage/cli/ for more info
 
 ```sh
-$ babel --plugins transform-dedupe-string-literals script.js
+$ babel --plugins dedupe-string-literals script.js
 ```
 
 ### Via Node API
@@ -69,6 +69,6 @@ $ babel --plugins transform-dedupe-string-literals script.js
 
 ```javascript
 require("babel-core").transform("code", {
-  plugins: ["transform-dedupe-string-literals"]
+  plugins: ["dedupe-string-literals"]
 });
 ```

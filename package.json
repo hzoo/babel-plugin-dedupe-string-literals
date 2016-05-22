@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "description": "Dedupe long strings in arrays using new variable declarations",
+  "repository": "hzoo/babel-plugin-transform-dedupe-string-literals",
+  "author": "Henry Zhu <hi@henryzoo.com>",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "babel src -d lib",
+    "test": "mocha --compilers js:babel-register",
+    "test:watch": "npm run test -- --watch",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "babel",
+    "plugin",
+    "babel-plugin"
+  ]
+}

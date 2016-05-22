@@ -12,6 +12,11 @@ export default function ({types: t}) {
 
         for (let i = 0; i < elements.length; i++) {
           let elementPath = elements[i];
+
+          if (!elementPath.isStringLiteral()) {
+            continue;
+          }
+
           let value = String(elementPath.node.value); // cast to string
 
           if (value.length < (minimumStringLength || 7)) {

@@ -1,6 +1,6 @@
 # babel-plugin-transform-dedupe-string-literals
 
-Dedupe long strings in arrays as new variable declarations to save on disk space.
+Dedupe long strings in arrays as new variable declarations.
 
 ## Example
 
@@ -35,6 +35,8 @@ $ npm install babel-plugin-transform-dedupe-string-literals
 
 ### Via `.babelrc` config file (Recommended)
 
+> Check http://babeljs.io/docs/usage/babelrc/ for more info
+
 **.babelrc**
 
 ```js
@@ -55,11 +57,15 @@ $ npm install babel-plugin-transform-dedupe-string-literals
 
 ### Via CLI
 
+> Check http://babeljs.io/docs/usage/cli/ for more info
+
 ```sh
 $ babel --plugins transform-dedupe-string-literals script.js
 ```
 
 ### Via Node API
+
+> Check http://babeljs.io/docs/usage/api/ for more info
 
 ```javascript
 require("babel-core").transform("code", {

@@ -28,6 +28,10 @@ export default function ({types: t}) {
           } else {
             cache[value].indexes.push(i);
 
+            let functionParentPath = elementPath.findParent((path) => {
+              return path.parentPath.isBlockStatement() || path.parentPath.isFunction() || path.parentPath.isProgram();
+            });
+
             let uid;
             if (cache[value].indexes.length === 2) {
               uid = path.scope.generateUidIdentifier("a"); // can use something else
@@ -35,31 +39,19 @@ export default function ({types: t}) {
                 cache[value].ref = uid;
               }
 
-              let declar = t.variableDeclaration("var", [
-                t.variableDeclarator(uid, t.stringLiteral(value))
-              ]);
-
-              if (path.parentPath.parentPath.isVariableDeclaration()) {
+              if (functionParentPath) {
                 elements[cache[value].indexes[0]].replaceWith(uid);
 
-                path.parentPath.parentPath.insertBefore(declar);
-              } else if (path.parentPath.isExpressionStatement()) {
-                elements[cache[value].indexes[0]].replaceWith(uid);
-                path.parentPath.insertBefore(declar);
+                let declar = t.variableDeclaration("var", [
+                  t.variableDeclarator(uid, t.stringLiteral(value))
+                ]);
+                functionParentPath.insertBefore(declar);
               }
             } else {
               uid = cache[value].ref;
             }
 
-            // TODO: this is all sort of duplicated above
-            let declar = t.variableDeclaration("var", [
-              t.variableDeclarator(uid, t.stringLiteral(String(value)))
-            ]);
-            // var a = ['a', 'a'];
-            if (path.parentPath.parentPath.isVariableDeclaration()) {
-              elementPath.replaceWith(uid);
-            // ['a', 'a'];
-            } else if (path.parentPath.isExpressionStatement()) {
+            if (functionParentPath) {
               elementPath.replaceWith(uid);
             }
           }

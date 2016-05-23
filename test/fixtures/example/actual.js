@@ -19,3 +19,5 @@ function b() {
    'long string unique',
   ];
 }
+
+module.exports = new Map(['long string', 'long string']);

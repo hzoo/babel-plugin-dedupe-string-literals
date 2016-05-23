@@ -8,3 +8,6 @@ function b() {
 
   ['short', 'short', _a3, _a3, _a4, _a4, 'long string unique'];
 }
+
+var _a5 = 'long string';
+module.exports = new Map([_a5, _a5]);

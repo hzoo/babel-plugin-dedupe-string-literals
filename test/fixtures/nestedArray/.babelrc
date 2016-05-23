@@ -1,7 +1,7 @@
 {
   "plugins": [
     ["../../../src", {
-      "minimumStringLength": 0
+      "minimumStringLength": 1
     }]
   ]
 }

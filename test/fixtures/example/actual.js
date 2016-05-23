@@ -1,5 +1,4 @@
 var a = [
- 'short',
  'dup long string',
  'dup long string',
  'dup long string2',
@@ -9,7 +8,6 @@ var a = [
 
 function b() {
   [
-   'short',
    'dup long string',
    'dup long string',
    'dup long string2',
@@ -19,6 +17,6 @@ function b() {
 }
 
 module.exports = new Map([
-  ['short', 'dup long string'],
+  ['dup long string'],
   ['dup long string2', 'long string unique3']
 ]);

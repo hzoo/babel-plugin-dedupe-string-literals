@@ -49,7 +49,7 @@ $ npm install babel-plugin-dedupe-string-literals
 {
   "plugins": [
     ["dedupe-string-literals", {
-      "minimumStringLength": 20 // defaults to 7
+      "minimumStringLength": 7 // defaults to 0
     }]
   ]
 }

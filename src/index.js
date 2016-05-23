@@ -22,7 +22,7 @@ export default function ({types: t}) {
           let value = elementPath.node.value;
 
           // minimumStringLength option to run the transform
-          if (value.length < (minimumStringLength || 7)) {
+          if (value.length < (minimumStringLength || 0)) {
             continue;
           }
 

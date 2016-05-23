@@ -6,29 +6,24 @@ export default function ({types: t}) {
     pre() {
       this.cache = {};
     },
-
     visitor: {
-      ArrayExpression(path, state) {
+      StringLiteral(path, state) {
+        // don't replace import/export strings
+        if (path.parentPath.isModuleDeclaration()) {
+          return;
+        }
+
         let minimumStringLength = state.opts.minimumStringLength;
-        let elements = path.get('elements');
-
-        for (let i = 0; i < elements.length; i++) {
-          let elementPath = elements[i];
-
-          if (!elementPath.isStringLiteral()) {
-            continue;
-          }
-
-          let value = elementPath.node.value;
+          let value = path.node.value;
 
           // minimumStringLength option to run the transform
           if (value.length < (minimumStringLength || 0)) {
-            continue;
+            return;
           }
 
-          // use a hash?
+          // TODO: should the key just be the string value?
           if (!this.cache[value]) {
-            this.cache[value] = { indexes: 1, firstPath: elementPath };
+            this.cache[value] = { indexes: 1, firstPath: path };
           } else {
             let cachedValue = this.cache[value];
             cachedValue.indexes++;
@@ -38,16 +33,23 @@ export default function ({types: t}) {
             // create the new variable declaration
             if (cachedValue.indexes === 2) {
 
-              uid = path.scope.generateUidIdentifier("a"); // can use something else
+              // TODO: can use something else
+              uid = path.scope.generateUidIdentifier("a");
+
               if (!cachedValue.ref) {
                 cachedValue.ref = uid;
               }
               cachedValue.firstPath.replaceWith(uid);
 
+              let newString = t.stringLiteral(value);
+              // create private property so that string isn't replaced
+              // with a reference to itself
+              newString._created = true;
+
               let declar = t.variableDeclaration("var", [
-                t.variableDeclarator(uid, t.stringLiteral(value))
+                t.variableDeclarator(uid, newString)
               ]);
-              let childOfProgramPath = elementPath.findParent((path) => {
+              let childOfProgramPath = path.findParent((path) => {
                 return path.parentPath.isProgram();
               });
               childOfProgramPath.insertBefore(declar);
@@ -57,9 +59,10 @@ export default function ({types: t}) {
 
             // change the string reference with the
             // newly created variable reference
-            elementPath.replaceWith(uid);
+            if (!path.node._created) {
+              path.replaceWith(uid);
+            }
           }
-        }
       } // ArrayExpression
     }
   };

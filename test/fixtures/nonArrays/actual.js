@@ -1,6 +1,11 @@
+'use strict';
+
+import z from 'a';
+
 var a = ['a','a'];
 
 function b(c = 'a') {
+  'use strict';
   let d = ['a','a'];
 
   e(() => {
@@ -20,5 +25,3 @@ const i = {
 };
 
 k = true && 'a';
-
-import a from 'a';

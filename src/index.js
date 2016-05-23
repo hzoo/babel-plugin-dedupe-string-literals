@@ -1,7 +1,6 @@
 // Babel plugin to hoist long string references to the top level
 // Ref https://twitter.com/mathias/status/734168515310194688
 
-
 export default function ({types: t}) {
   return {
     pre() {

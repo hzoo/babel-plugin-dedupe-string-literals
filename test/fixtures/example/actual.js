@@ -19,8 +19,6 @@ function b() {
 }
 
 module.exports = new Map([
-  'short',
-  'dup long string',
-  'dup long string2',
-  'long string unique3'
+  ['short', 'dup long string'],
+  ['dup long string2', 'long string unique3']
 ]);

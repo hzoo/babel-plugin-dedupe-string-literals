@@ -17,7 +17,7 @@ export default function ({types: t}) {
             continue;
           }
 
-          let value = String(elementPath.node.value); // cast to string
+          let value = elementPath.node.value;
 
           if (value.length < (minimumStringLength || 7)) {
             continue;

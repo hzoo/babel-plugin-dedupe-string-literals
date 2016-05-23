@@ -29,7 +29,7 @@ export default function ({types: t}) {
             cachedValue.indexes++;
 
             let uid;
-            // after the first duplicate value,
+            // after the first duplicate value
             // create the new variable declaration
             if (cachedValue.indexes === 2) {
 

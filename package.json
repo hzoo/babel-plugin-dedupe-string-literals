@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-dedupe-string-literals",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Dedupe long strings in arrays using new variable declarations at the top level",
   "repository": "hzoo/babel-plugin-dedupe-string-literals",
   "author": "Henry Zhu <hi@henryzoo.com>",

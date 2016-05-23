@@ -1,23 +1,26 @@
 var a = [
  'short',
- 'short',
- 'long string',
- 'long string',
- 'long string2',
- 'long string2',
+ 'dup long string',
+ 'dup long string',
+ 'dup long string2',
+ 'dup long string2',
  'long string unique',
 ];
 
 function b() {
   [
    'short',
-   'short',
-   'long string',
-   'long string',
-   'long string2',
-   'long string2',
-   'long string unique',
+   'dup long string',
+   'dup long string',
+   'dup long string2',
+   'dup long string2',
+   'long string unique2',
   ];
 }
 
-module.exports = new Map(['long string', 'long string']);
+module.exports = new Map([
+  'short',
+  'dup long string',
+  'dup long string2',
+  'long string unique3'
+]);

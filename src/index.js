@@ -1,13 +1,16 @@
-// Babel plugin to hoist long string references
+// Babel plugin to hoist long string references to the top level
 // Ref https://twitter.com/mathias/status/734168515310194688
+
 
 export default function ({types: t}) {
   return {
+    pre() {
+      this.cache = {};
+    },
+
     visitor: {
       ArrayExpression(path, state) {
         let minimumStringLength = state.opts.minimumStringLength;
-        // cache is per array atm
-        let cache = {};
         let elements = path.get('elements');
 
         for (let i = 0; i < elements.length; i++) {
@@ -19,41 +22,43 @@ export default function ({types: t}) {
 
           let value = elementPath.node.value;
 
+          // minimumStringLength option to run the transform
           if (value.length < (minimumStringLength || 7)) {
             continue;
           }
 
-          if (!cache[value]) { // use a hash?
-            cache[value] = { indexes: [i] };
+          // use a hash?
+          if (!this.cache[value]) {
+            this.cache[value] = { indexes: 1, firstPath: elementPath };
           } else {
-            cache[value].indexes.push(i);
-
-            let functionParentPath = elementPath.findParent((path) => {
-              return path.parentPath.isBlockStatement() || path.parentPath.isFunction() || path.parentPath.isProgram();
-            });
+            let cachedValue = this.cache[value];
+            cachedValue.indexes++;
 
             let uid;
-            if (cache[value].indexes.length === 2) {
+            // after the first duplicate value,
+            // create the new variable declaration
+            if (cachedValue.indexes === 2) {
+
               uid = path.scope.generateUidIdentifier("a"); // can use something else
-              if (!cache[value].ref) {
-                cache[value].ref = uid;
+              if (!cachedValue.ref) {
+                cachedValue.ref = uid;
               }
+              cachedValue.firstPath.replaceWith(uid);
 
-              if (functionParentPath) {
-                elements[cache[value].indexes[0]].replaceWith(uid);
-
-                let declar = t.variableDeclaration("var", [
-                  t.variableDeclarator(uid, t.stringLiteral(value))
-                ]);
-                functionParentPath.insertBefore(declar);
-              }
+              let declar = t.variableDeclaration("var", [
+                t.variableDeclarator(uid, t.stringLiteral(value))
+              ]);
+              let childOfProgramPath = elementPath.findParent((path) => {
+                return path.parentPath.isProgram();
+              });
+              childOfProgramPath.insertBefore(declar);
             } else {
-              uid = cache[value].ref;
+              uid = cachedValue.ref;
             }
 
-            if (functionParentPath) {
-              elementPath.replaceWith(uid);
-            }
+            // change the string reference with the
+            // newly created variable reference
+            elementPath.replaceWith(uid);
           }
         }
       } // ArrayExpression

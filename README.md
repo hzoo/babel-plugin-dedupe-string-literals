@@ -2,6 +2,8 @@
 
 Dedupe long strings in arrays as new variable declarations at the top level.
 
+Ref: https://twitter.com/mathias/status/734168515310194688
+
 ## Example
 
 **In**

@@ -1,4 +1,4 @@
-// Babel plugin to hoist long string references to the top level
+// Babel plugin to dedupe strings as new variable declarations at the Program/top level.
 // Ref https://twitter.com/mathias/status/734168515310194688
 
 export default function ({types: t}) {
@@ -63,7 +63,7 @@ export default function ({types: t}) {
               path.replaceWith(uid);
             }
           }
-      } // ArrayExpression
+      } // StringLiteral
     }
   };
 }

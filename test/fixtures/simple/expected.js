@@ -1,2 +1,2 @@
-var _a = 'long string';
-['a', _a, _a];
+var _ = 'long string';
+['a', _, _];

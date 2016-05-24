@@ -1,5 +1,11 @@
 # babel-plugin-dedupe-string-literals
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/babel-plugin-dedupe-string-literals"><img alt="NPM Status" src="https://img.shields.io/npm/v/babel-plugin-dedupe-string-literals.svg?style=flat"></a>
+  <a href="https://travis-ci.org/hzoo/babel-plugin-dedupe-string-literals"><img alt="Travis Status" src="https://img.shields.io/travis/hzoo/babel-plugin-dedupe-string-literals/master.svg?style=flat&label=travis"></a>
+  <a href="https://slack.babeljs.io/"><img alt="Slack Status" src="https://slack.babeljs.io/badge.svg"></a>
+</p>
+
 Dedupe strings as new variable declarations at the Program/top level.
 
 Ref: https://twitter.com/mathias/status/734168515310194688

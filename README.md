@@ -28,15 +28,15 @@ function b() {
 'use strict';
 
 import z from 'a';
-var _a = 'long string';
-var a = [_a2, _a, _a];
+var _ = 'long string';
+var a = [_2, _, _];
 
-var _a2 = 'a';
+var _2 = 'a';
 function b() {
   'use strict';
 
-  g(_a2);
-  h[_a2];
+  g(_2);
+  h[_2];
 }
 ```
 

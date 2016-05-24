@@ -33,8 +33,7 @@ export default function ({ types: t }) {
           // create the new variable declaration
           if (cachedValue.indexes === 2) {
 
-            // TODO: can use something else
-            uid = path.scope.generateUidIdentifier("a");
+            uid = path.scope.generateUidIdentifier("_");
 
             if (!cachedValue.ref) {
               cachedValue.ref = uid;

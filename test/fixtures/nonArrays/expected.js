@@ -2,26 +2,26 @@
 
 import z from 'a';
 
-var _a = 'a';
-var a = [_a, _a];
+var _ = 'a';
+var a = [_, _];
 
-function b(c = _a) {
+function b(c = _) {
   'use strict';
 
-  let d = [_a, _a];
+  let d = [_, _];
 
   e(() => {
-    var f = [_a, _a];
+    var f = [_, _];
   });
 
-  if (_a) {}
+  if (_) {}
 }
 
-g(_a);
-h[_a];
+g(_);
+h[_];
 const i = {
-  j: _a,
-  [_a]: _a
+  j: _,
+  [_]: _
 };
 
-k = true && _a;
+k = true && _;

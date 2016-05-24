@@ -4,6 +4,8 @@ Dedupe strings as new variable declarations at the Program/top level.
 
 Ref: https://twitter.com/mathias/status/734168515310194688
 
+> This plugin uses a native [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) so it only supports node >= 0.12.
+
 ## Example
 
 **In**

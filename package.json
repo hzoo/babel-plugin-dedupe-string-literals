@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-dedupe-string-literals",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Dedupe strings as new variable declarations at the Program/top level",
   "repository": "hzoo/babel-plugin-dedupe-string-literals",
   "author": "Henry Zhu <hi@henryzoo.com>",

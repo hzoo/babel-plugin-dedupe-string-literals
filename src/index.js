@@ -4,7 +4,7 @@
 export default function ({types: t}) {
   return {
     pre() {
-      this.cache = {};
+      this.cache = new Map();
     },
     visitor: {
       StringLiteral(path, state) {
@@ -22,10 +22,10 @@ export default function ({types: t}) {
           }
 
           // TODO: should the key just be the string value?
-          if (!this.cache[value]) {
-            this.cache[value] = { indexes: 1, firstPath: path };
+          if (!this.cache.has(value)) {
+            this.cache.set(value, { indexes: 1, firstPath: path });
           } else {
-            let cachedValue = this.cache[value];
+            let cachedValue = this.cache.get(value);
             cachedValue.indexes++;
 
             let uid;

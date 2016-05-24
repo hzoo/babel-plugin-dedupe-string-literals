@@ -1,6 +1,6 @@
 # babel-plugin-dedupe-string-literals
 
-Dedupe long strings in arrays as new variable declarations at the top level.
+Dedupe strings as new variable declarations at the Program/top level.
 
 Ref: https://twitter.com/mathias/status/734168515310194688
 
@@ -9,14 +9,33 @@ Ref: https://twitter.com/mathias/status/734168515310194688
 **In**
 
 ```js
+'use strict';
+import z from 'a';
 var a = ['a', 'long string', 'long string'];
+
+function b() {
+  'use strict';
+  g('a');
+  h['a'];
+}
 ```
 
 **Out**
 
 ```js
+'use strict';
+
+import z from 'a';
 var _a = 'long string';
-var a = ['a', _a, _a];
+var a = [_a2, _a, _a];
+
+var _a2 = 'a';
+function b() {
+  'use strict';
+
+  g(_a2);
+  h[_a2];
+}
 ```
 
 ## Installation

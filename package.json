@@ -4,6 +4,9 @@
   "description": "Dedupe long strings in arrays using new variable declarations at the top level",
   "repository": "hzoo/babel-plugin-dedupe-string-literals",
   "author": "Henry Zhu <hi@henryzoo.com>",
+  "engines": {
+    "node": ">=0.12"
+  },
   "main": "lib/index.js",
   "files": [
     "lib"

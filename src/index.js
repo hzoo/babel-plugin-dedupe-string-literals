@@ -48,7 +48,7 @@ export default function ({ types: t }) {
             let declar = t.variableDeclaration("var", [
               t.variableDeclarator(uid, newString)
             ]);
-            let childOfProgramPath = path.findParent((path) => {
+            let childOfProgramPath = cachedValue.firstPath.findParent((path) => {
               return path.parentPath.isProgram();
             });
             childOfProgramPath.insertBefore(declar);
